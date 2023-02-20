@@ -1,8 +1,9 @@
 <template>
   <div class="container">
     <div class="form">
-      <h1>Add User</h1>
       <div class="input">
+        <h3>Add User</h3>
+        <hr />
         <b-form-group
           id="fieldset-1"
           label="Firstname"
@@ -53,8 +54,10 @@
           ></b-form-input>
         </b-form-group>
       </div>
-      <div>
-        <b-button block variant="primary">Confirm</b-button>
+      <div class="d-grid gap-2">
+        <b-button block class="button" style="background-color: rgb(54, 19, 87)"
+          >Confirm</b-button
+        >
       </div>
     </div>
   </div>
@@ -96,5 +99,13 @@ export default {
 .container {
   width: 100%;
   background-color: #ffff;
+  border-radius: 20px 20px 20px 20px;
+}
+hr {
+  width: 200%;
+  background-color: black;
+}
+h3 {
+  color: rgb(54, 19, 87);
 }
 </style>

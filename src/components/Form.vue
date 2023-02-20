@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div id="1" class="container">
     <div class="form">
       <div class="input">
         <h3>Add User</h3>
@@ -14,6 +14,7 @@
         >
           <b-form-input
             id="input-1"
+            type="text"
             v-model="name"
             :state="state"
             trim
@@ -31,6 +32,7 @@
         >
           <b-form-input
             id="input-2"
+            type="text"
             v-model="lastname"
             :state="state"
             trim
@@ -48,6 +50,7 @@
         >
           <b-form-input
             id="input-3"
+            type="number"
             v-model="age"
             :state="state"
             trim
@@ -93,7 +96,7 @@ export default {
 }
 .input {
   text-align: justify;
-  padding-top: 5px;
+  padding-top: 10px;
 }
 .container {
   width: 100%;

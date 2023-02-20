@@ -1,16 +1,19 @@
 <template>
   <div id="app">
     <UserForm />
+    <ListForm />
   </div>
 </template>
 
 <script>
 import UserForm from "./components/Form.vue";
+import ListForm from "./components/ListForm.vue";
 
 export default {
   name: "App",
   components: {
     UserForm,
+    ListForm,
   },
 };
 </script>

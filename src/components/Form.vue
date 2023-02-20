@@ -55,9 +55,7 @@
         </b-form-group>
       </div>
       <div class="d-grid gap-2">
-        <b-button block class="button" style="background-color: rgb(54, 19, 87)"
-          >Confirm</b-button
-        >
+        <button block class="button">Confirm</button>
       </div>
     </div>
   </div>
@@ -95,6 +93,7 @@ export default {
 }
 .input {
   text-align: justify;
+  padding-top: 5px;
 }
 .container {
   width: 100%;
@@ -104,8 +103,22 @@ export default {
 hr {
   width: 200%;
   background-color: black;
+  border-width: 3px 0 0 0;
+  border-style: solid;
+  height: 1px;
+  opacity: 1 !important;
 }
 h3 {
   color: rgb(54, 19, 87);
+}
+.button {
+  background-color: rgb(54, 19, 87);
+  border-radius: 7px;
+  border: 1px;
+  height: 38px;
+  color: #ffff;
+}
+.button:hover {
+  opacity: 0.5;
 }
 </style>

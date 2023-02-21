@@ -9,14 +9,14 @@
           label="Firstname"
           label-for="input-1"
           valid-feedback="Thank you!"
-          :invalid-feedback="invalidFeedback"
-          :state="state"
+          :invalid-feedback="invalidFirstnameFeedback"
+          :state="nameState"
         >
           <b-form-input
             id="input-1"
             type="text"
             v-model="name"
-            :state="state"
+            :state="nameState"
             trim
           ></b-form-input>
         </b-form-group>
@@ -27,14 +27,14 @@
           label="Lastname"
           label-for="input-2"
           valid-feedback="Thank you!"
-          :invalid-feedback="invalidFeedback"
-          :state="state"
+          :invalid-feedback="invalidLastnameFeedback"
+          :state="lastnameState"
         >
           <b-form-input
             id="input-2"
             type="text"
             v-model="lastname"
-            :state="state"
+            :state="lastnameState"
             trim
           ></b-form-input>
         </b-form-group>
@@ -45,14 +45,14 @@
           label="Age"
           label-for="input-3"
           valid-feedback="Thank you!"
-          :invalid-feedback="invalidFeedback"
-          :state="state"
+          :invalid-feedback="invalidAgeFeedback"
+          :state="ageState"
         >
           <b-form-input
             id="input-3"
             type="number"
             v-model="age"
-            :state="state"
+            :state="ageState"
             trim
           ></b-form-input>
         </b-form-group>
@@ -67,13 +67,33 @@
 export default {
   name: "UserForm",
   computed: {
-    state() {
+    nameState() {
       console.log(this);
       return this.name.length >= 4;
     },
-    invalidFeedback() {
-      if (this.name.length > 0) {
+    lastnameState() {
+      console.log(this);
+      return this.lastname.length >= 4;
+    },
+    ageState() {
+      console.log(this);
+      return this.age < 100 && this.age > 0;
+    },
+    invalidFirstnameFeedback() {
+      if (this.name.length >= 4) {
         return "Enter at least 4 characters.";
+      }
+      return "Please enter something.";
+    },
+    invalidLastnameFeedback() {
+      if (this.lastname.length >= 4) {
+        return "Enter at least 4 characters.";
+      }
+      return "Please enter something.";
+    },
+    invalidAgeFeedback() {
+      if (this.age < 100 && this.age > 0) {
+        return "Please enter a real age.";
       }
       return "Please enter something.";
     },

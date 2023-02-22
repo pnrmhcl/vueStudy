@@ -5,7 +5,16 @@
         <div class="input">
           <h3>User List</h3>
           <hr class="listHr" />
-          <b-table striped hover :items="items"></b-table>
+          <nav class="navbar navbar-light bg-light">
+            <input
+              class="form-control mb-4"
+              id="tableSearch"
+              type="text"
+              placeholder="Search.."
+            />
+          </nav>
+
+          <b-table id="myTable" table hover :items="items"> </b-table>
         </div>
       </div>
     </div>
@@ -13,6 +22,8 @@
 </template>
 
 <script>
+import $ from "jquery";
+
 import axios from "axios";
 
 export default {
@@ -34,7 +45,34 @@ export default {
       });
   },
 };
+$(document).ready(function () {
+  $("#tableSearch").on("keyup", function () {
+    var value = $(this).val().toLowerCase();
+    $("#myTable tr").filter(function () {
+      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1);
+    });
+  });
+});
+
+$(document).ready(function () {
+  $("#listSearch").on("keyup", function () {
+    var value = $(this).val().toLowerCase();
+    $("#myList li").filter(function () {
+      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1);
+    });
+  });
+});
+
+$(document).ready(function () {
+  $("#anythingSearch").on("keyup", function () {
+    var value = $(this).val().toLowerCase();
+    $("#myDIV *").filter(function () {
+      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1);
+    });
+  });
+});
 </script>
+
 <style>
 .listHr {
   width: 100%;

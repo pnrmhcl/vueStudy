@@ -14,7 +14,14 @@
             />
           </nav>
 
-          <b-table id="myTable" table hover :items="items"> </b-table>
+          <b-table
+            id="myTable"
+            table
+            hover
+            :items="items"
+            @row-clicked="myRowClickHandler"
+          >
+          </b-table>
         </div>
       </div>
     </div>
@@ -23,7 +30,6 @@
 
 <script>
 import $ from "jquery";
-
 import axios from "axios";
 
 export default {
@@ -33,7 +39,11 @@ export default {
       errors: [],
     };
   },
-
+  methods: {
+    myRowClickHandler: (record, index) => {
+      console.log(record, index);
+    },
+  },
   created() {
     axios
       .get("https://dummyjson.com/users?select=age,firstName,lastName")

@@ -1,8 +1,12 @@
 <template>
   <div id="1" class="container">
     <div class="d-grid gap-2">
-      <div>
-        <b-table striped hover :items="items"></b-table>
+      <div class="listForm">
+        <div class="input">
+          <h3>User List</h3>
+          <hr class="listHr" />
+          <b-table striped hover :items="items"></b-table>
+        </div>
       </div>
     </div>
   </div>
@@ -32,9 +36,18 @@ export default {
 };
 </script>
 <style>
-.container {
+.listHr {
   width: 100%;
+  background-color: black;
+  border-width: 1px 0 0 0;
+  border-style: solid;
+  height: 1px;
+  opacity: 1 !important;
+}
+.listForm {
   background-color: #ffff;
-  border-radius: 20px 20px 20px 20px;
+  padding: 1em;
+  margin-bottom: 1em;
+  width: 100%;
 }
 </style>

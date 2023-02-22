@@ -1,5 +1,5 @@
 <template>
-  <div id="1" class="container">
+  <div id="2" class="container">
     <div class="form">
       <div class="input">
         <h3>Add User</h3>

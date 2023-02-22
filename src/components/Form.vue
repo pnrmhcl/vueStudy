@@ -68,15 +68,12 @@ export default {
   name: "UserForm",
   computed: {
     nameState() {
-      console.log(this);
       return this.name.length >= 4;
     },
     lastnameState() {
-      console.log(this);
       return this.lastname.length >= 4;
     },
     ageState() {
-      console.log(this);
       return this.age < 100 && this.age > 0;
     },
     invalidFirstnameFeedback() {

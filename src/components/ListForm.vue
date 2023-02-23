@@ -13,15 +13,16 @@
               placeholder="Search.."
             />
           </nav>
-
-          <b-table
-            id="myTable"
-            table
-            hover
-            :items="items"
-            @row-clicked="myRowClickHandler"
-          >
-          </b-table>
+          <div style="height: 450px; overflow-x: hidden; overflow-y: scroll">
+            <b-table
+              id="myTable"
+              table
+              hover
+              :items="items"
+              @row-clicked="myRowClickHandler"
+            >
+            </b-table>
+          </div>
         </div>
       </div>
     </div>
@@ -39,9 +40,10 @@ export default {
       errors: [],
     };
   },
+
   methods: {
     myRowClickHandler: (record, index) => {
-      console.log(record, index);
+      console.log(record, index + 1);
     },
   },
   created() {

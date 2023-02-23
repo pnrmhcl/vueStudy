@@ -13,7 +13,7 @@
               placeholder="Search.."
             />
           </nav>
-          <div style="height: 450px; overflow-x: hidden; overflow-y: scroll">
+          <div style="height: 350px; overflow-x: hidden; overflow-y: scroll">
             <b-table
               id="myTable"
               table

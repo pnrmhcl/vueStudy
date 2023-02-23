@@ -3,7 +3,14 @@
     <div class="d-grid gap-2">
       <div class="listForm">
         <div class="input">
-          <h3>User List</h3>
+          <div style="display: flex">
+            <h3>User List</h3>
+            <div style="justify-content: space-between">
+              <button type="button" v-show="simple" class="deleteButton">
+                Delete
+              </button>
+            </div>
+          </div>
           <hr class="listHr" />
           <nav class="navbar navbar-light bg-light">
             <input
@@ -16,11 +23,20 @@
           <div style="height: 350px; overflow-x: hidden; overflow-y: scroll">
             <b-table
               id="myTable"
-              table
+              selectable
+              select-mode="range"
               hover
               :items="items"
               @row-clicked="myRowClickHandler"
-            >
+              ><template slot="preview" slot-scope="row">
+                <b-form-checkbox
+                  v-model="row.item.check"
+                  @input="myRowClickHandler(row.record, row.index, row.item)"
+                ></b-form-checkbox>
+              </template>
+              <template slot="fix" slot-scope="row">
+                <b-form-checkbox v-model="row.item.fix"></b-form-checkbox>
+              </template>
             </b-table>
           </div>
         </div>
@@ -38,14 +54,16 @@ export default {
     return {
       items: [],
       errors: [],
+      simple: false,
     };
   },
-
   methods: {
-    myRowClickHandler: (record, index) => {
+    myRowClickHandler: function (record, index) {
       console.log(record, index + 1);
+      console.log((this.simple = true));
     },
   },
+
   created() {
     axios
       .get("https://dummyjson.com/users?select=age,firstName,lastName")
@@ -99,5 +117,18 @@ $(document).ready(function () {
   padding: 1em;
   margin-bottom: 1em;
   width: 100%;
+}
+.deleteButton {
+  position: absolute;
+  right: 20em;
+  background-color: rgb(54, 19, 87);
+  border-radius: 7px;
+  border: 1px;
+  color: #ffff;
+  width: 100px;
+  height: 35px;
+}
+.deleteButton:hover {
+  opacity: 0.5;
 }
 </style>

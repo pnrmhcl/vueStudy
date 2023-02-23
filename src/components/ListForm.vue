@@ -6,7 +6,12 @@
           <div style="display: flex">
             <h3>User List</h3>
             <div style="justify-content: space-between">
-              <button type="button" v-show="simple" class="deleteButton">
+              <button
+                type="button"
+                v-show="simple"
+                class="deleteButton"
+                @click="deleteUser()"
+              >
                 Delete
               </button>
             </div>
@@ -55,12 +60,30 @@ export default {
       items: [],
       errors: [],
       simple: false,
+      id: "",
     };
   },
   methods: {
-    myRowClickHandler: function (record, index) {
-      console.log(record, index + 1);
+    myRowClickHandler: function (record) {
+      this.id = record.id;
+      console.log(record.id);
       console.log((this.simple = true));
+    },
+    deleteUser() {
+      axios
+        .delete("https://dummyjson.com/users/" + this.id)
+        .then((response) => {
+          if (response.status === 200) {
+            this.$toastr.defaultPosition = "toast-top-center";
+            this.$toastr.defaultStyle = { "background-color": "green" };
+            this.$toastr.s(
+              "<font color='black'> Silme İşlemi Başarılı.</font>"
+            );
+          }
+        })
+        .catch((e) => {
+          this.errors.push(e);
+        });
     },
   },
 

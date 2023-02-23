@@ -1,6 +1,6 @@
 <template>
   <div id="2" class="container">
-    <div class="form">
+    <div class="form" name="form">
       <div class="input">
         <h3>Add User</h3>
         <hr />
@@ -58,14 +58,22 @@
         </b-form-group>
       </div>
       <div class="d-grid gap-2">
-        <button block class="button">Confirm</button>
+        <button block class="button" @click="createUser()">Confirm</button>
       </div>
     </div>
   </div>
 </template>
 <script>
+import axios from "axios";
+import Vue from "vue";
+import VueToastr from "vue-toastr";
+
+Vue.use(VueToastr, {
+  type: "success",
+});
 export default {
   name: "UserForm",
+
   computed: {
     nameState() {
       return this.name.length >= 4;
@@ -101,6 +109,37 @@ export default {
       lastname: "",
       age: "",
     };
+  },
+
+  methods: {
+    createUser() {
+      if (this.name === "" || this.lastname === "" || this.age === "") {
+        this.$toastr.defaultPosition = "toast-top-center";
+        this.$toastr.defaultStyle = { "background-color": "red" };
+        this.$toastr.s(
+          "<font color='black'> Lütfen tüm alanları doldurun.</font>"
+        );
+        return false;
+      }
+      axios
+        .post("https://dummyjson.com/users/add", {
+          firstName: this.name,
+          lastName: this.lastname,
+          age: this.age,
+        })
+        .then((response) => {
+          if (response.status === 200) {
+            this.$toastr.defaultPosition = "toast-top-center";
+            this.$toastr.defaultStyle = { "background-color": "green" };
+            this.$toastr.s("<font color='black'> Başarılı</font>");
+          }
+        })
+        .catch(() => {
+          this.$toastr.defaultPosition = "toast-top-center";
+          this.$toastr.defaultStyle = { "background-color": "red" };
+          this.$toastr.s("<font color='black'> Bir sorun oluştu.</font>");
+        });
+    },
   },
 };
 </script>
